@@ -1,0 +1,2 @@
+* * * * * /usr/local/bin/python /app/visuels_concentrateur_automate_au_bon_beurre/automate/scripts/automateClient.py
+# An empty line is required at the end of this file for a valid cron file.
