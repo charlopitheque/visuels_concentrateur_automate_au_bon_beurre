@@ -16,10 +16,12 @@ class ClientThread(threading.Thread):
     def run(self):
         print("Connexion de %s %s" % (self.ip, self.port,))
 
-        r = self.clientsocket.recv(2048)
+        r = self.clientsocket.recv(99999)
         print("Ouverture du fichier: ", r, "...")
-        fp = open(r, 'rb')
-        self.clientsocket.send(fp.read())
+        with open(r, 'rb') as _file:
+            print(_file.read())
+
+        self.clientsocket.send('Fichier correctement recu'.encode('utf-8'))
 
         print("Client déconnecté...")
 

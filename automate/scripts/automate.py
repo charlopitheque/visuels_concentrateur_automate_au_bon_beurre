@@ -33,5 +33,5 @@ def gettype(elements):
 
 
 test = [
-    [1], [[1, ], [1], [1], [1], [1]]
+    [1], [[1, 0X0000BA20, 'tank', 'external', 'milk_weight', 'weight_product', 'ph', 'k_plus', 'nacl', 'salmnoelle', 'listeria', 'ecoli' ], [1], [1], [1], [1]]
 ]

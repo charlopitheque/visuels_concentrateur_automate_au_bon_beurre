@@ -3,11 +3,14 @@ import socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("", 1111))
 
-print("Le nom du fichier que vous voulez récupérer:")
-file_name = input(">> ") # utilisez raw_input() pour les anciennes versions python
-s.send(file_name.encode())
-file_name = 'data/%s' % (file_name,)
-r = s.recv(9999999)
-with open(file_name,'wb') as _file:
-    _file.write(r)
-print("Le fichier a été correctement copié dans : %s." % file_name)
+print("Le nom du fichier que vous allez envoyer au serveur :")
+file = input(">> ") # utilisez raw_input() pour les anciennes versions python
+with open(file, 'wb') as _file:
+    _file.write('test'.encode('utf-8'))
+
+s.send(_file.read())
+
+print("Le fichier a été correctement été envoyé au serveur : %s." % file)
+
+s.recv(2048)
+
