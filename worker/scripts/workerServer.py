@@ -1,5 +1,5 @@
 # coding: utf-8
-import pymysql
+import mysql.connector
 import socket
 import threading
 import json
@@ -29,14 +29,14 @@ class ClientThread(threading.Thread):
         for automates in decoded:
             print(automates)
             for automate in automates:
-                cnx = mysql.connector.connect(user='root', password='expand', host='127.0.0.1', database='devops')
+                cnx = mysql.connector.connect(user='admin', password='admin', host='127.0.0.1', database='USINE_AU_BON_BEURRE_BDD')
                 cursor = cnx.cursor()
 
                 # todo : ajouter le poids produit fini
                 # improvement : date(YYYY, MM, DD) instead of passing just epoch
 
-                insert_data = ("INSERT INTO donnees_automates "
-                               "(date, id_unite, numero_automate, type_automate, temp_cuve, temp_exterieur, poids_lait_cuve, mesure_ph, mesure_k, concent_nacl, niveau_bact_salmo, niveau_bact_ecoli, niveau_bact_listeria  )"
+                insert_data = ("INSERT INTO automaton "
+                               "(date, unit_id, automaton_number, automaton_type, tank_temp, external_temp, milk_weight_tank, ph_measurement, k_measurement, nacl_concentration, lvl_bact_salmo, lvl_bact_ecoli, lvl_bact_listeria  )"
                                "VALUES (%(date)s, %(unit_id)s, %(automaton_number)s, %(automaton_type)s, %(tank_temp)s, %(external_temp)s, %(milk_weight_tank)s, %(ph_measurement)s, %(k_measurement)s, %(nacl_concentration)s,"
                                " %(lvl_bact_salmo)s, %(lvl_bact_ecoli)s, %(lvl_bact_listeria)s)"
                                )
