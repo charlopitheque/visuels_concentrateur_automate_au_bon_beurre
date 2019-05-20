@@ -41,7 +41,7 @@ class ClientThread(threading.Thread):
                                " %(lvl_bact_salmo)s, %(lvl_bact_ecoli)s, %(lvl_bact_listeria)s)"
                                )
                 data = {
-                    'date': automate['epoch'],
+                    'epoch': automate['epoch'],
                     'unit_id': automate['unit_id'],
                     'automaton_number': automate['automaton_number'],
                     'automaton_type': automate['automaton_type'],
