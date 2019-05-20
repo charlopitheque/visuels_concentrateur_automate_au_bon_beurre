@@ -1,8 +1,9 @@
 # coding: utf-8
-import mysql.connector
+import pymysql
 import socket
 import threading
 import json
+
 
 class ClientThread(threading.Thread):
 
@@ -13,44 +14,47 @@ class ClientThread(threading.Thread):
         self.clientsocket = clientsocket
         print("[+] Nouveau thread pour %s %s" % (self.ip, self.port,))
 
+    # noinspection SqlNoDataSourceInspection
     def run(self):
         print("Connexion de %s %s" % (self.ip, self.port,))
 
         r = self.clientsocket.recv(99999)
-        print("Ouverture du fichier", "...")
+        print("Ouverture du fichier")
         print(r.decode('utf-8'))
 
         self.clientsocket.send('Fichier correctement recu'.encode('utf-8'))
-        
+
         decoded = json.loads(r.decode('utf-8'))
-        i=0
+
         for automates in decoded:
             print(automates)
             for automate in automates:
-                print(automate["id_unite"])
                 cnx = mysql.connector.connect(user='root', password='expand', host='127.0.0.1', database='devops')
                 cursor = cnx.cursor()
-                #todo : ajouter le poids produit fini
-                #improvement : date(YYYY, MM, DD) instead of passing just epoch
-                insert_data = ("INSERT INTO donnees_automates " 
+
+                # todo : ajouter le poids produit fini
+                # improvement : date(YYYY, MM, DD) instead of passing just epoch
+
+                insert_data = ("INSERT INTO donnees_automates "
                                "(date, id_unite, numero_automate, type_automate, temp_cuve, temp_exterieur, poids_lait_cuve, mesure_ph, mesure_k, concent_nacl, niveau_bact_salmo, niveau_bact_ecoli, niveau_bact_listeria  )"
-                               "VALUES (%(date)s, %(id_unite)s, %(numero_automate)s, %(type_automate)s, %(temp_cuve)s, %(temp_exterieur)s, %(poids_lait_cuve)s, %(mesure_ph)s, %(mesure_k)s, %(concent_nacl)s, %(niveau_bact_salmo)s, %(niveau_bact_ecoli)s, %(niveau_bact_listeria)s)" 
-                              )
+                               "VALUES (%(date)s, %(unit_id)s, %(automaton_number)s, %(automaton_type)s, %(tank_temp)s, %(external_temp)s, %(milk_weight_tank)s, %(ph_measurement)s, %(k_measurement)s, %(nacl_concentration)s,"
+                               " %(lvl_bact_salmo)s, %(lvl_bact_ecoli)s, %(lvl_bact_listeria)s)"
+                               )
                 data = {
-                        'date':automate['epoch'],
-                        'id_unite':automate['id_unite'],
-                        'numero_automate':automate['numero_automate'],
-                        'type_automate':automate['type_automate'],
-                        'temp_cuve':automate['temp_cuve'],
-                        'temp_exterieur':automate['temp_exterieur'],
-                        'poids_lait_cuve':automate['poids_lait_cuve'],
-                        'mesure_ph':automate['mesure_ph'],
-                        'mesure_k':automate['mesure_k'],
-                        'concent_nacl':automate['concent_nacl'],
-                        'niveau_bact_salmo':automate['niveau_bact_salmo'],
-                        'niveau_bact_ecoli':automate['niveau_bact_ecoli'],
-                        'niveau_bact_listeria':automate['niveau_bact_listeria']
-                        }
+                    'date': automate['epoch'],
+                    'unit_id': automate['unit_id'],
+                    'automaton_number': automate['automaton_number'],
+                    'automaton_type': automate['automaton_type'],
+                    'tank_temp': automate['tank_temp'],
+                    'external_temp': automate['external_temp'],
+                    'milk_weight_tank': automate['milk_weight_tank'],
+                    'ph_measurement': automate['ph_measurement'],
+                    'k_measurement': automate['k_measurement'],
+                    'nacl_concentration': automate['concent_nacl'],
+                    'lvl_bact_salmo': automate['lvl_bact_salmo'],
+                    'lvl_bact_ecoli': automate['lvl_bact_ecoli'],
+                    'lvl_bact_listeria': automate['lvl_bact_listeria']
+                }
 
                 cursor.execute(insert_data, data)
                 cnx.commit()
