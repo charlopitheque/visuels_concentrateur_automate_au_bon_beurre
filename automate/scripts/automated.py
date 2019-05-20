@@ -4,7 +4,7 @@ import time
 import random
 import json
 
-# Hostname doit etre "id_unite"
+# L'id de l'unité
 unit_id = 1  # pour le moment, sinon (socket.gethostname())[0].encode('utf-8')
 types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
 data = {}

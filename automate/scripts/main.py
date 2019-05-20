@@ -6,7 +6,6 @@ import json
 import socket
 
 while True:
-    # Hostname doit etre "id_unite"
     unit_id = 1  # pour le moment, sinon (socket.gethostname())[0].encode('utf-8')
     types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
     data = {}
@@ -17,7 +16,6 @@ while True:
 
     with open(f, "w+") as outfile:
         i = 1
-
         array = []
         while i < 11:
             data = {
@@ -36,11 +34,10 @@ while True:
                        'lvl_bact_listeria': random.randrange(28, 54, 1),
                        'epoch': date_str
                    },
-            i = i + 1
+            i += 1
             array.append(data)
-
-        os.environ["FILE_NAME"] = f
         json.dump(array, outfile, indent=1)
+    os.environ["FILE_NAME"] = f
     time.sleep(10)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(("", 1111))
