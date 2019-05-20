@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f4c408a-94d5-4778-8629-b5941d506f61" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/automate/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/automate/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/automate/scripts/automate.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate/scripts/automate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/automate/scripts/automateClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate/scripts/automateClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker/scripts/workerServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/worker/scripts/workerServer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,29 +42,25 @@
           <entry key="Dockerfile" value="263" />
           <entry key="crontab" value="56" />
           <entry key="gitignore" value="5" />
-          <entry key="py" value="1426" />
+          <entry key="py" value="1527" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Dockerfile" value="263" />
           <entry key="PLAIN_TEXT" value="61" />
-          <entry key="Python" value="1426" />
+          <entry key="Python" value="1527" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/automate/scripts/automate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="35" column="138" selection-start-line="35" selection-start-column="138" selection-end-line="35" selection-end-column="138" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <marker date="1558170828232" expanded="true" signature="1274:1325" ph="..." />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -97,17 +89,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/automate/scripts/automateClient.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="73" lean-forward="true" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
+            <state relative-caret-position="238">
+              <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/worker/scripts/workerServer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="41" />
+            <state relative-caret-position="204">
+              <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
               <folding>
                 <element signature="e#17#30#0" expanded="true" />
               </folding>
@@ -157,10 +149,10 @@
         <option value="$PROJECT_DIR$/worker/scripts/main.py" />
         <option value="$PROJECT_DIR$/automate/scripts/main.py" />
         <option value="$PROJECT_DIR$/worker/Dockerfile" />
-        <option value="$PROJECT_DIR$/automate/scripts/automate.py" />
         <option value="$PROJECT_DIR$/automate/Dockerfile" />
-        <option value="$PROJECT_DIR$/automate/scripts/automateClient.py" />
         <option value="$PROJECT_DIR$/worker/scripts/workerServer.py" />
+        <option value="$PROJECT_DIR$/automate/scripts/automateClient.py" />
+        <option value="$PROJECT_DIR$/automate/scripts/automate.py" />
       </list>
     </option>
   </component>
@@ -261,7 +253,7 @@
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24179432" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24179432" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -334,31 +326,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/automate/scripts/automate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="35" column="138" selection-start-line="35" selection-start-column="138" selection-end-line="35" selection-end-column="138" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1558170828232" expanded="true" signature="1274:1325" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/automate/scripts/automateClient.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="73" lean-forward="true" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
+        <state relative-caret-position="238">
+          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/worker/scripts/workerServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="41" />
+        <state relative-caret-position="204">
+          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
           <folding>
             <element signature="e#17#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automate/scripts/automate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
