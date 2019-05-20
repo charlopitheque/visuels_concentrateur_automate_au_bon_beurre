@@ -36,8 +36,8 @@ class ClientThread(threading.Thread):
                 # improvement : date(YYYY, MM, DD) instead of passing just epoch
 
                 insert_data = ("INSERT INTO automaton "
-                               "(date, unit_id, automaton_number, automaton_type, tank_temp, external_temp, milk_weight_tank, ph_measurement, k_measurement, nacl_concentration, lvl_bact_salmo, lvl_bact_ecoli, lvl_bact_listeria  )"
-                               "VALUES (%(date)s, %(unit_id)s, %(automaton_number)s, %(automaton_type)s, %(tank_temp)s, %(external_temp)s, %(milk_weight_tank)s, %(ph_measurement)s, %(k_measurement)s, %(nacl_concentration)s,"
+                               "(epoch, unit_id, automaton_number, automaton_type, tank_temp, external_temp, milk_weight_tank, ph_measurement, k_measurement, nacl_concentration, lvl_bact_salmo, lvl_bact_ecoli, lvl_bact_listeria  )"
+                               "VALUES (%(epoch)s, %(unit_id)s, %(automaton_number)s, %(automaton_type)s, %(tank_temp)s, %(external_temp)s, %(milk_weight_tank)s, %(ph_measurement)s, %(k_measurement)s, %(nacl_concentration)s,"
                                " %(lvl_bact_salmo)s, %(lvl_bact_ecoli)s, %(lvl_bact_listeria)s)"
                                )
                 data = {
