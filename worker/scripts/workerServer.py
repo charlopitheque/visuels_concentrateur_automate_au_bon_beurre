@@ -50,7 +50,7 @@ class ClientThread(threading.Thread):
                     'milk_weight_tank': automate['milk_weight_tank'],
                     'ph_measurement': automate['ph_measurement'],
                     'k_measurement': automate['k_measurement'],
-                    'nacl_concentration': automate['concent_nacl'],
+                    'nacl_concentration': automate['nacl_concentration'],
                     'lvl_bact_salmo': automate['lvl_bact_salmo'],
                     'lvl_bact_ecoli': automate['lvl_bact_ecoli'],
                     'lvl_bact_listeria': automate['lvl_bact_listeria']
