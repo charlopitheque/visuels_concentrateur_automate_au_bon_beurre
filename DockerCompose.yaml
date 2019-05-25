@@ -1,20 +1,48 @@
 version: '3'
 services:
-  container1:
-    image: sshtest
-    build: .
-    networks:
-     - sshtest
-    ports:
-     - 2201:22
- 
-  container2:
-    image: sshtest
-    build: .
-    networks:
-     - sshtest
-    ports:
-     - 2202:22
- 
-networks:
- sshtest:
+  automate1:
+    image: automate:1.0
+    container_name: automate1
+    restart: always
+    environment:
+      - unit_id=1
+    depends_on:
+      - workerServer
+  automate2:
+    image: automate:1.0
+    container_name: automate2
+    restart: always
+    environment:
+      - unit_id=2
+    depends_on:
+      - workerServer
+  automate3:
+    image: automate:1.0
+    container_name: automate3
+    restart: always
+    environment:
+      - unit_id=3
+    depends_on:
+      - workerServer
+  automate4:
+    image: automate:1.0
+    container_name: automate4
+    restart: always
+    environment:
+      - unit_id=4
+    depends_on:
+      - workerServer
+  automate5:
+    image: automate:1.0
+    container_name: automate5
+    restart: always
+    environment:
+      - unit_id=5
+    depends_on:
+      - workerServer
+  workerServer:
+    image: workerserver:1.0
+    container_name: workerServer
+    restart: always
+    hostname: "workerserver"
+

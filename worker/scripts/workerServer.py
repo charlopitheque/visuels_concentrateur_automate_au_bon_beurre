@@ -14,7 +14,7 @@ class ClientThread(threading.Thread):
         self.clientsocket = clientsocket
         print("[+] Nouveau thread pour %s %s" % (self.ip, self.port,))
 
-    # noinspection SqlNoDataSourceInspection
+    # TODO : rajouter les test d'existence, les try catch nécéssaires
     def run(self):
         print("Connexion de %s %s" % (self.ip, self.port,))
 

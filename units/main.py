@@ -5,9 +5,11 @@ import random
 import json
 import socket
 
+unit_id = os.environ["unit_id"]
+types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+# todo : définir le couple automate_number + type --> [['aut_numb','type'] * 10 ] --> ceci permettra de remplacer la boucle while dans la génération de la donnée --> for automate in types: unit_id = automate[0] and automaton_type = automate[1]
 while True:
-    unit_id = 1  # pour le moment, sinon (socket.gethostname())[0].encode('utf-8')
-    types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+
     data = {}
     date_str = str(calendar.timegm(time.gmtime()))
 
