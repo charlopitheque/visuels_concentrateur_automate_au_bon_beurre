@@ -8,7 +8,6 @@
     </head>
     <body>
         <div>
-            <form>
                 <label for="unit-select">Choose a unit :</label>
                 <select id="unit-select">
                     <option value="1">Unit 1</option>
@@ -16,8 +15,8 @@
                     <option value="3">Unit 3</option>
                     <option value="4">Unit 4</option>
                     <option value="5">Unit 5</option>
-                    <button id="switch-unit">Switch unit</button>
                 </select>
+                <input id="switchUnit" type="button"/>
             </form>
         </div>
         <div style="width:75%;">
@@ -34,76 +33,11 @@
         </div>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
-
-        
-        
+        <script src="../static/js/views_scripts/index.js" type="module"></script>
         <script>
-                var MONTHS = ['10h01','10h02','10h03','10h04','10h05','10h06','10h07','10h08','10h09','10h10','10h11','10h12','10h13','10h14','10h15','10h16','10h17','10h18','10h19','10h20'];
-                var configTempCuve = {
-                    type: 'line',
-                    data: {
-                        labels: ['10h01','10h02','10h03','10h04','10h05','10h06','10h07','10h08','10h09','10h10','10h11','10h12','10h13','10h14','10h15','10h16','10h17','10h18','10h19','10h20'],
-                        datasets: [
-                            {
-                                label: 'Automate 1',
-                                backgroundColor: '#ff0000' ,
-                                borderColor: '#FF0000',
-                                data: [10,20,30,40,50,60,70,80,90,100,90,80,70,60,50,40,30,20,10,50],
-                                fill: false,
-                            },
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        title: {
-                            display: true,
-                            text: ''
-                        },
-                        tooltips: {
-                            mode: 'index',
-                            intersect: false,
-                        },
-                        hover: {
-                            mode: 'nearest',
-                            intersect: true
-                        },
-                        scales: {
-                            xAxes: [{
-                                display: true,
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Month'
-                                }
-                            }],
-                            yAxes: [{
-                                display: true,
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Value'
-                                }
-                            }]
-                        }
-                    }
-                };
-        
-                window.onload = function() {
-                    let i
-                    //document.getElementsByClassName('canvas').forEach((element)=>{
-                      //  var ctx = element.getContext('2d');
-                        //window.charts[i++] = new Chart(ctx, config);
-                    //})
-                    var ctx = document.getElementById("canvas").getContext("2d");
-                    window.myLine = new Chart(ctx, configTempCuve);
-                    
-                };
                 
-                document.getElementById('switch-unit').addEventListener('click', function() {
-                    //call switch unit route 
-                   // window.myLine.update();
-                });
 
-                document.getElementById('randomizeData').addEventListener('click', function() {
+                /* document.getElementById('randomizeData').addEventListener('click', function() {
                     config.data.datasets.forEach(function(dataset) {
                         dataset.data = dataset.data.map(function() {
                             return randomScalingFactor();
@@ -112,10 +46,10 @@
                     });
         
                     window.myLine.update();
-                });
+                }); */
         
-                var colorNames = Object.keys(window.chartColors);
-                document.getElementById('addDataset').addEventListener('click', function() {
+               // var colorNames = Object.keys(window.chartColors);
+                /* document.getElementById('addDataset').addEventListener('click', function() {
                     var colorName = colorNames[config.data.datasets.length % colorNames.length];
                     var newColor = window.chartColors[colorName];
                     var newDataset = {
@@ -132,9 +66,9 @@
         
                     config.data.datasets.push(newDataset);
                     window.myLine.update();
-                });
+                }); */
         
-                document.getElementById('addData').addEventListener('click', function() {
+                /* document.getElementById('addData').addEventListener('click', function() {
                     if (config.data.datasets.length > 0) {
                         var month = MONTHS[config.data.labels.length % MONTHS.length];
                         config.data.labels.push(month);
@@ -145,12 +79,12 @@
         
                         window.myLine.update();
                     }
-                });
+                }); */
         
-                document.getElementById('removeDataset').addEventListener('click', function() {
+                /* document.getElementById('removeDataset').addEventListener('click', function() {
                     config.data.datasets.splice(0, 1);
                     window.myLine.update();
-                });
+                }); 
         
                 document.getElementById('removeData').addEventListener('click', function() {
                     config.data.labels.splice(-1, 1); // remove the label first
@@ -160,7 +94,7 @@
                     });
         
                     window.myLine.update();
-                });
+                });*/
             </script>
     </body>
 </html>

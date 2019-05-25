@@ -37,6 +37,7 @@ app.set('view engine', 'ejs'); // configure template engine
 app.use(bodyParser.json()); // parse form data client
 
 app.use('/', router)
+app.use('/automatons', automatonsRouter)
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);

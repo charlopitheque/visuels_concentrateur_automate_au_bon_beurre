@@ -7,6 +7,7 @@ export default {
             data: payload,
             success: function(data) {
                 console.log(`Automatons got by unit_id = ${payload.search}, returned : ${data}`);
+                console.log(data)
             },
             error: function(err){
                 console.log(err)
