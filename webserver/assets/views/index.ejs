@@ -21,7 +21,7 @@
             </form>
         </div>
         <div style="width:75%;">
-            <canvas class="canvas"></canvas>
+            <canvas id="canvas" class="canvas"></canvas>
             <canvas class="canvas"></canvas>
             <canvas class="canvas"></canvas>
             <canvas class="canvas"></canvas>
@@ -89,10 +89,12 @@
         
                 window.onload = function() {
                     let i
-                    document.getElementsByClassName('canvas').forEach((element)=>{
-                        var ctx = element.getContext('2d');
-                        window.charts[i++] = new Chart(ctx, config);
-                    })
+                    //document.getElementsByClassName('canvas').forEach((element)=>{
+                      //  var ctx = element.getContext('2d');
+                        //window.charts[i++] = new Chart(ctx, config);
+                    //})
+                    var ctx = document.getElementById("canvas").getContext("2d");
+                    window.myLine = new Chart(ctx, configTempCuve);
                     
                 };
                 

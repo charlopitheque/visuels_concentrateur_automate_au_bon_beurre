@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 const app = express();
-//const usersRouter = require('./routes/user');
+const automatonsRouter = require('./routes/automatons');
 const router = require('./routes/router');
 
 const port = 5000;
