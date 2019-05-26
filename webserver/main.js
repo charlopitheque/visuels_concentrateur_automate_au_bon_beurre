@@ -13,10 +13,10 @@ const port = 5000;
 // the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.
 const db = mysql.createConnection (
     {
-        host: '127.0.0.1',
-        user: 'root',
-        password: 'root',
-        database: 'devenir_chiant_test'
+        host: '54.38.240.160',
+        user: 'automate_worker',
+        password: 'Pksdj87Gtfucb',
+        database: 'devops'
     }
 );
 
@@ -33,7 +33,6 @@ app.set('port', process.env.port || port); // set express to use this port
 app.set('views', __dirname + '/assets/views'); // set express to look in this folder to render our view
 app.use('/static', express.static(path.join(__dirname + '/assets/static')));
 app.set('view engine', 'ejs'); // configure template engine
-//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // parse form data client
 
 app.use('/', router)
