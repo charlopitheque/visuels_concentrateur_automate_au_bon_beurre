@@ -16,7 +16,7 @@ const db = mysql.createConnection (
         host: '127.0.0.1',
         user: 'admin',
         password: 'admin',
-        database: 'AU_BON_BEURRE_BDD'
+        database: 'USINE_AU_BON_BEURRE_BDD'
     }
 );
 
