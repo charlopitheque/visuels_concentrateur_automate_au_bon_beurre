@@ -62,7 +62,7 @@ services:
     restart: always
     hostname: "workerserver"
     networks:
-      usine_network:
+     network_usine:
         ipv4_address: 192.168.0.10
 
 networks:
