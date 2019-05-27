@@ -9,6 +9,8 @@ services:
       - unit_id=1
     depends_on:
       - workerServer
+    networks:
+      - network_usine
 
   unit2:
     image: unit:v1
@@ -18,6 +20,8 @@ services:
       - unit_id=2
     depends_on:
       - workerServer
+    networks:
+      - network_usine
 
   unit3:
     image: unit:v1
@@ -27,6 +31,8 @@ services:
       - unit_id=3
     depends_on:
       - workerServer
+    networks:
+      - network_usine
 
   unit4:
     image: unit:v1
@@ -36,6 +42,8 @@ services:
       - unit_id=4
     depends_on:
       - workerServer
+    networks:
+    - network_usine
 
   unit5:
     image: unit:v1
@@ -45,10 +53,21 @@ services:
       - unit_id=5
     depends_on:
       - workerServer
+    networks:
+      - network_usine
 
   workerServer:
     image: workerserver:v1
     container_name: workerServer
     restart: always
     hostname: "workerserver"
+    networks:
+      usine_network:
+        ipv4_address: 192.168.0.10
 
+networks:
+  network_usine:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.10/24
