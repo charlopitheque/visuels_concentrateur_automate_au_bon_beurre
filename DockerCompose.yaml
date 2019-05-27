@@ -1,47 +1,53 @@
 version: '3'
 services:
-  automate1:
-    image: automate:1.0
+
+  unit1:
+    image: unit:v1
     container_name: automate1
     restart: always
     environment:
       - unit_id=1
     depends_on:
       - workerServer
-  automate2:
-    image: automate:1.0
+
+  unit2:
+    image: unit:v1
     container_name: automate2
     restart: always
     environment:
       - unit_id=2
     depends_on:
       - workerServer
-  automate3:
-    image: automate:1.0
+
+  unit3:
+    image: unit:v1
     container_name: automate3
     restart: always
     environment:
       - unit_id=3
     depends_on:
       - workerServer
-  automate4:
-    image: automate:1.0
+
+  unit4:
+    image: unit:v1
     container_name: automate4
     restart: always
     environment:
       - unit_id=4
     depends_on:
       - workerServer
-  automate5:
-    image: automate:1.0
+
+  unit5:
+    image: unit:v1
     container_name: automate5
     restart: always
     environment:
       - unit_id=5
     depends_on:
       - workerServer
+
   workerServer:
-    image: workerserver:1.0
+    image: workerserver:v1
     container_name: workerServer
     restart: always
     hostname: "workerserver"
