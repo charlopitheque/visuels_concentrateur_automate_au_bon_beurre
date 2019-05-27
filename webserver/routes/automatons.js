@@ -8,7 +8,6 @@ router.get('/getBy', (req, res) => {
             if (err) {
                 res.status(400).send('Automaton Not found')
             }
-            console.log(result);
             res.status(200).send(result)
         });
     });

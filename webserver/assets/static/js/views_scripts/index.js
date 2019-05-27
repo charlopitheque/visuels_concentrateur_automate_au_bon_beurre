@@ -48,7 +48,7 @@ var configTempCuve = {
 };
 
 /**
- * {
+ *  {
         label: 'Automate 1',
         backgroundColor: '#ff0000' ,
         borderColor: '#FF0000',
@@ -65,6 +65,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug:'tank-temp'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -99,6 +102,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug:'ext-temp'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -133,6 +139,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug:'milk-tank-weight'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -167,6 +176,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug:'finished-product-mass'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -201,6 +213,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug:'mesure-ph'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -235,6 +250,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug:'concentration-k+'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -269,6 +287,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug:'concentration-nacl'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -303,6 +324,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta: {
+                slug:'lvl-bact-salmonelle'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -337,6 +361,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta:{
+                slug: 'lvl-bact-ecoli'
+            },
             responsive: true,
             title: {
                 display: true,
@@ -371,6 +398,9 @@ let chartConfigs = [
             datasets: []
         },
         options: {
+            meta: {
+                slug: "lvl-bact-listeria"
+            },
             responsive: true,
             title: {
                 display: true,
@@ -405,6 +435,7 @@ function initiateCharts(){
     chartConfigs.forEach(element => {
         var ctx = document.getElementById("canvas"+i).getContext("2d");
         window.myLine = new Chart(ctx, element);
+
         i++
     });
     if(i=10){
@@ -414,6 +445,20 @@ function initiateCharts(){
     }
    })
 };
+function createDatasets(){
+    chartConfigs.forEach(element=>{
+        let i
+        for(i=0; i<11; i++){
+            element.data.datasets.push({
+                label: 'Automate'+i,
+                backgroundColor: '#ff000'+i ,
+                borderColor: '#FF000'+i,
+                data: [],
+                fill: false,
+            })
+        }
+    })
+}
 function getData(payload = null){
     if(!payload){
         payload = {
@@ -422,24 +467,43 @@ function getData(payload = null){
     }
     automatonAPI.getBy(payload).then((res)=>{
         return res
+    }).catch(err=>{
+        console.log('There is no data..')
     });
 
 };
 function populateCharts(){
-    /*chartsConfig.forEach((chart)=>{
-        if(chart.data.datasets.length === 0 && chat.data.labels === 0){
+    let automatons = getData();
+    chartsConfig.forEach((chart)=>{
+        if(chart.data.datasets.length === 0 && chart.data.labels === 0){
+            switch (options.title.text){
+                case 'tank-temp':
+                    break;
+                case 'ext-temp':
+                    break;
+                case 'milk-tank-weight':
+                    break;
+                case 'finished-product-mass':
+                    break;
+                case 'mesure-ph':
+                    break;
+                case 'concentration-k+':
+                    break;
+                case 'concentration-nacl':
+                    break;
+                case 'lvl-bact-salmonelle':
+                    break;
+                case 'lvl-bact-ecoli':
+                    break;
+                case 'lvl-bact-listeria':
+                    break;
+            }
             //create datasets
             //add data
         }else{
             //add data
         }
-    }*/
-    let automatons = getData();
-    if(!chartConfigs){
-        console.log('crete dataset')
-    }else{
-        console.log('add data')
-    }
+    })
 }
 
 (function () {
@@ -453,15 +517,15 @@ function populateCharts(){
         console.log(response)
         //populate
         let automatons = getData();
-        populateCharts(automatons);
+        //populateCharts(automatons);
         console.log(automatons)
     })
     $( "#switchUnit" ).click(function() {
         var e = document.getElementById("unit-select");
         var unit_id = e.options[e.selectedIndex].value;
         console.log(unit_id)
-        let automatons = populateCharts({search:unit_id})
-        console.log(automatons)
+        //let automatons = populateCharts({search:unit_id})
+        //console.log(automatons)
         //update les datasets de chaques config des graph, voir 
     });
 })();

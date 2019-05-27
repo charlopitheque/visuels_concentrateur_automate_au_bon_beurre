@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 //var fs      = require('fs');
 
-router.get("/home", (req,res)=>{
+router.get("", (req,res)=>{
     res.render('../views/index.ejs')
 })
 
