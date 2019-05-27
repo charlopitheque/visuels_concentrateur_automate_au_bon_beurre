@@ -42,7 +42,7 @@ while True:
     os.environ["FILE_NAME"] = f
     time.sleep(10)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect(("", 1111))
+    s.connect(("192.168.0.10", 1111))
 
     f = os.environ["FILE_NAME"]
     with open(f, 'rb') as _file:
