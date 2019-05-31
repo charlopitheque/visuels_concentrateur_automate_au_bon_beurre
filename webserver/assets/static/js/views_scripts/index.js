@@ -66,7 +66,7 @@ let chartConfigs = [
         },
         options: {
             meta:{
-                slug:'tank-temp'
+                slug:'tank-temp',
             },
             responsive: true,
             title: {
@@ -77,10 +77,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -114,10 +118,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -151,10 +159,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -188,10 +200,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -225,10 +241,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -262,10 +282,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -299,10 +323,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -336,10 +364,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -373,10 +405,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -410,10 +446,14 @@ let chartConfigs = [
                 mode: 'index',
                 intersect: false,
             },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            maintainAspectRatio: true,
+            animation: {
+                duration: 0
             },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             scales: {
                 xAxes: [{
                     display: true,
@@ -432,78 +472,94 @@ let chartConfigs = [
 function initiateCharts(){
    return new Promise((resolve, reject)=>{
     let i=1;
+    window.charts =  []
     chartConfigs.forEach(element => {
         var ctx = document.getElementById("canvas"+i).getContext("2d");
-        window.myLine = new Chart(ctx, element);
-
+        window.charts[i] = new Chart(ctx, element);
         i++
     });
     if(i=10){
-        resolve('Charts successfully initiated :)')
+        resolve('Charts successfully initiated :)');
     }else{
-        reject()
+        reject('error, charts didnt initiated');
     }
    })
 };
 function createDatasets(){
-    chartConfigs.forEach(element=>{
-        let i
-        for(i=0; i<11; i++){
-            element.data.datasets.push({
-                label: 'Automate'+i,
-                backgroundColor: '#ff000'+i ,
-                borderColor: '#FF000'+i,
-                data: [],
-                fill: false,
-            })
-        }
+    return new Promise((resolve,reject)=>{
+        window.charts.forEach(element=>{
+            for(let i=1; i<11; i++){
+                element.data.datasets.push({
+                    label: 'Automate'+i,
+                    backgroundColor: '#ff00'+i+i ,
+                    borderColor: '#FF000'+i,
+                    data: [],
+                    fill: false,
+                    id: i
+                })
+            }  
+            window.charts[charts.indexOf(element)].update();
+        })
+        resolve('All datasets created')
     })
 }
 function getData(payload = null){
-    if(!payload){
-        payload = {
-            search : 1
-        }
-    }
-    automatonAPI.getBy(payload).then((res)=>{
-        return res
-    }).catch(err=>{
-        console.log('There is no data..')
-    });
-
-};
-function populateCharts(){
-    let automatons = getData();
-    chartsConfig.forEach((chart)=>{
-        if(chart.data.datasets.length === 0 && chart.data.labels === 0){
-            switch (options.title.text){
-                case 'tank-temp':
-                    break;
-                case 'ext-temp':
-                    break;
-                case 'milk-tank-weight':
-                    break;
-                case 'finished-product-mass':
-                    break;
-                case 'mesure-ph':
-                    break;
-                case 'concentration-k+':
-                    break;
-                case 'concentration-nacl':
-                    break;
-                case 'lvl-bact-salmonelle':
-                    break;
-                case 'lvl-bact-ecoli':
-                    break;
-                case 'lvl-bact-listeria':
-                    break;
+    return new Promise((resolve, reject)=>{
+        if(!payload){
+            payload = {
+                search : 1
             }
-            //create datasets
-            //add data
-        }else{
-            //add data
         }
+        automatonAPI.getBy(payload).then((res)=>{
+            resolve(res)
+        }).catch(err=>{
+           reject('No data..')
+        });
     })
+};
+function populateCharts(timeRange){
+    getData().then(res=>{
+        window.charts.forEach((chart)=>{
+            for(let j =0; j<timeRange; j++){
+                chart.data.labels.push('test')
+            }
+            res.forEach(automaton=>{
+                //console.log(chart.options.meta.slug)
+                switch (chart.options.meta.slug){
+                    case 'tank-temp':
+                        chart.data.datasets.forEach(dataset=>{
+                            if(dataset.id === automaton.numero_automate ){
+                                dataset.data.push(parseFloat(automaton.temp_cuve))
+                           }
+                        })
+                        
+                        console.log(chart.data)
+                        break;
+                    case 'ext-temp':
+                        break;
+                    case 'milk-tank-weight':
+                        break;
+                    case 'finished-product-mass':
+                        break;
+                    case 'mesure-ph':
+                        break;
+                    case 'concentration-k+':
+                        break;
+                    case 'concentration-nacl':
+                        break;
+                    case 'lvl-bact-salmonelle':
+                        break;
+                    case 'lvl-bact-ecoli':
+                        break;
+                    case 'lvl-bact-listeria':
+                        break;
+                }
+                //add data in each case 
+            })
+           
+            chart.update();
+        })
+    });
 }
 
 (function () {
@@ -511,14 +567,13 @@ function populateCharts(){
     //document.getElementsByClassName('canvas').forEach((element)=>{
                       //  var ctx = element.getContext('2d');
                         //window.charts[i++] = new Chart(ctx, config);
-                    //})
-                   
+                    //}
     initiateCharts().then(response=>{
         console.log(response)
-        //populate
-        let automatons = getData();
-        //populateCharts(automatons);
-        console.log(automatons)
+        createDatasets().then((response)=>{
+            console.log(response)
+            populateCharts(60);
+        })
     })
     $( "#switchUnit" ).click(function() {
         var e = document.getElementById("unit-select");

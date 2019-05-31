@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 router.get('/getBy', (req, res) => {
     console.log(req.query.search)
-    let query = "SELECT * FROM `automaton` where unit_id = "+ req.query.search+" ORDER BY epoch LIMIT 600;"; // get automatons by unit_id
+    let query = "SELECT * FROM `donnees_automates` where id_unite = "+ req.query.search+" ORDER BY date LIMIT 600;"; // get automatons by unit_id
         // execute
         db.query(query, (err, result)=>{
             if (err) {
@@ -11,4 +11,4 @@ router.get('/getBy', (req, res) => {
             res.status(200).send(result)
         });
     });
-module.exports = router
+module.exports = router;
