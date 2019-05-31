@@ -6,7 +6,7 @@ import json
 import socket
 
 unit_id = os.environ["unit_id"]
-types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+types = [[0, 5], 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
 # todo : définir le couple automate_number + type --> [['aut_numb','type'] * 10 ] --> ceci permettra de remplacer la boucle while dans la génération de la donnée --> for automate in types: unit_id = automate[0] and automaton_type = automate[1]
 while True:
 
@@ -19,11 +19,11 @@ while True:
     with open(f, "w+") as outfile:
         i = 1
         array = []
-        while i < 11:
+        for type in types:
             data = {
                        'unit_id': unit_id,
-                       'automaton_number': i,
-                       'automaton_type': '0X000BA2' + str(random.choice(types)),
+                       'automaton_number': type[1],
+                       'automaton_type': '0X000BA2' + str(type[0]),
                        'tank_temp': round(random.uniform(2.5, 4.0), 1),
                        'external_temp': round(random.uniform(8.0, 14.0), 1),
                        'milk_weight_tank': random.randrange(3512, 4607, 1),
