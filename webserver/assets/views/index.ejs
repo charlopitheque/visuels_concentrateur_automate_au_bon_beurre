@@ -8,7 +8,7 @@
     </head>
     <body>
         <div>
-            <form class="">
+            <form>
                 <label for="unit-select">Choose a unit :</label>
                 <select id="unit-select">
                     <option value="1">Unit 1</option>
@@ -17,8 +17,14 @@
                     <option value="4">Unit 4</option>
                     <option value="5">Unit 5</option>
                 </select>
-                <button id="switchUnit" type="button"/>
-                
+                <button id="switchUnit" type="button">Changer d'unité</button>
+            </form>
+            <form>
+                <label for="min-interval">Intervalle minimum :</label>
+                <input type="time" id="min-interval" name="min-interval" >
+                <label for="max-interval">Intervalle maximum :</label>
+                <input type="time" id="max-interval" name="max-interval" >
+                <button id="switch-interval" type="button">Changer d'intervalle de temps</button>
             </form>
         </div>
         <div style="width:75%;">

@@ -1,51 +1,4 @@
 import automatonAPI from '../api/automatons.mjs'
-//var MONTHS = [];
-var configTempCuve = {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [
-            {
-                label: 'Automate 1',
-                backgroundColor: '#ff0000' ,
-                borderColor: '#FF0000',
-                data: [10,20,30,40,50,60,70,80,90,100,90,80,70,60,50,40,30,20,10,50],
-                fill: false,
-            },
-        ]
-    },
-    options: {
-        responsive: true,
-        title: {
-            display: true,
-            text: ''
-        },
-        tooltips: {
-            mode: 'index',
-            intersect: false,
-        },
-        hover: {
-            mode: 'nearest',
-            intersect: true
-        },
-        scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Month'
-                }
-            }],
-            yAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Value'
-                }
-            }]
-        }
-    }
-};
 
 /**
  *  {
@@ -54,9 +7,10 @@ var configTempCuve = {
         borderColor: '#FF0000',
         data: [10,20,30,40,50,60,70,80,90,100,90,80,70,60,50,40,30,20,10,50],
         fill: false,
+        id: 1
     },
  */
-
+let labels = [];
 let chartConfigs = [
     {
         type: 'line',
@@ -407,12 +361,13 @@ let chartConfigs = [
             },
             maintainAspectRatio: true,
             animation: {
-                duration: 0
+               duration : 1000,
+               easing: 'easeInQuart'
             },
             hover: {
-                animationDuration: 0
+                animationDuration: 1000
             },
-            responsiveAnimationDuration: 0,
+            responsiveAnimationDuration: 1000,
             scales: {
                 xAxes: [{
                     display: true,
@@ -490,9 +445,9 @@ function createDatasets(){
         window.charts.forEach(element=>{
             for(let i=1; i<11; i++){
                 element.data.datasets.push({
-                    label: 'Automate'+i,
+                    label: 'Automate'+i,    
                     backgroundColor: '#ff00'+i+i ,
-                    borderColor: '#FF000'+i,
+                    borderColor: '#FF00'+i+i,
                     data: [],
                     fill: false,
                     id: i
@@ -505,82 +460,109 @@ function createDatasets(){
 }
 function getData(payload = null){
     return new Promise((resolve, reject)=>{
-        if(!payload){
-            payload = {
-                search : 1
-            }
-        }
+        // if(!payload){
+        //     payload = {
+        //         search : 1
+        //     }
+        // }
         automatonAPI.getBy(payload).then((res)=>{
             resolve(res)
         }).catch(err=>{
            reject('No data..')
         });
     })
-};
-function populateCharts(timeRange){
-    getData().then(res=>{
-        window.charts.forEach((chart)=>{
-            for(let j =0; j<timeRange; j++){
-                chart.data.labels.push('test')
-            }
-            res.forEach(automaton=>{
-                //console.log(chart.options.meta.slug)
-                switch (chart.options.meta.slug){
-                    case 'tank-temp':
-                        chart.data.datasets.forEach(dataset=>{
-                            if(dataset.id === automaton.numero_automate ){
-                                dataset.data.push(parseFloat(automaton.temp_cuve))
-                           }
-                        })
-                        
-                        console.log(chart.data)
-                        break;
-                    case 'ext-temp':
-                        break;
-                    case 'milk-tank-weight':
-                        break;
-                    case 'finished-product-mass':
-                        break;
-                    case 'mesure-ph':
-                        break;
-                    case 'concentration-k+':
-                        break;
-                    case 'concentration-nacl':
-                        break;
-                    case 'lvl-bact-salmonelle':
-                        break;
-                    case 'lvl-bact-ecoli':
-                        break;
-                    case 'lvl-bact-listeria':
-                        break;
+}
+function populateCharts(payload){
+    console.log('populating ...')
+    getData(payload).then(res=>{
+        res.forEach(automaton=>{
+            let date = new Date(automaton.date)
+            if(labels.indexOf(date.toLocaleTimeString())=== -1){
+                labels.push(date.toLocaleTimeString())
+                if(labels.length > 60){
+                    labels.shift();
                 }
+            }
+        })
+        window.charts.forEach((chart)=>{
+            res.forEach(automaton=>{
+                chart.data.datasets.forEach(dataset=>{
+                    if(dataset.id === automaton.numero_automate ){
+                        switch (chart.options.meta.slug){
+                            case 'tank-temp':
+                                dataset.data.push(parseFloat(automaton.temp_cuve))
+                                break;
+                            case 'ext-temp':
+                                dataset.data.push(parseFloat(automaton.temp_exterieur))
+                                break;
+                            case 'milk-tank-weight':
+                                dataset.data.push(parseFloat(automaton.poids_lait_cuve))
+                                break;
+                            case 'finished-product-mass':
+                                break;
+                            case 'mesure-ph':
+                                dataset.data.push(parseFloat(automaton.mesure_ph))
+                                break;
+                            case 'concentration-k+':
+                                dataset.data.push(parseFloat(automaton.mesure_k))
+                                break;
+                            case 'concentration-nacl':
+                                dataset.data.push(parseFloat(automaton.concent_nacl))
+                                break;
+                            case 'lvl-bact-salmonelle':
+                                dataset.data.push(parseFloat(automaton.niveau_bact_salmo))
+                                break;
+                            case 'lvl-bact-ecoli':
+                                dataset.data.push(parseFloat(automaton.niveau_bact_ecoli))
+                                break;
+                            case 'lvl-bact-listeria':
+                                dataset.data.push(parseFloat(automaton.niveau_bact_listeria))
+                                break;
+                        }
+                    }
+                    if(dataset.data.length>60){
+                        dataset.data.shift()
+                    }   
+                })
                 //add data in each case 
             })
-           
+            chart.data.labels = labels
             chart.update();
         })
     });
 }
-
+function updateCharts(){
+    setInterval(populateCharts({search:1, limit:10}),10000)
+}
 (function () {
-
-    //document.getElementsByClassName('canvas').forEach((element)=>{
-                      //  var ctx = element.getContext('2d');
-                        //window.charts[i++] = new Chart(ctx, config);
-                    //}
     initiateCharts().then(response=>{
-        console.log(response)
+        console.log(response);
         createDatasets().then((response)=>{
-            console.log(response)
-            populateCharts(60);
+            console.log(response);
+            populateCharts({search:1, limit:600});
+            setTimeout( ()=>{
+                setInterval(()=>populateCharts({search:1, limit:10}),2000)
+            }, 2000)
+        });
+    });
+    $('#switch-interval').click(()=>{
+        console.log('On switch les intervalles')
+        window.charts.forEach(chart=>{
+            chart.data.datasets.forEach(dataset=>{
+
+            })
+            chart.data.labels.slice()
+            chart.update();
         })
-    })
-    $( "#switchUnit" ).click(function() {
+      
+    });
+    $( "#switchUnit" ).click(() => {
         var e = document.getElementById("unit-select");
         var unit_id = e.options[e.selectedIndex].value;
-        console.log(unit_id)
+        console.log(unit_id);
         //let automatons = populateCharts({search:unit_id})
         //console.log(automatons)
         //update les datasets de chaques config des graph, voir 
     });
+    
 })();
