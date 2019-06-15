@@ -5,8 +5,18 @@ import random
 import json
 import socket
 
+
+def get_rand_hexa(liste):
+    index = random.randrange(0, len(liste), 1)
+    elem = liste[index]
+    liste.pop(index)
+    return elem
+
+
 unit_id = os.environ["unit_id"]
-types = [[0, 5], 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+types = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+automatons = [[1, get_rand_hexa(types)], [2, get_rand_hexa(types)], [3, get_rand_hexa(types)], [4, get_rand_hexa(types)], [5, get_rand_hexa(types)], [6, get_rand_hexa(types)], [7, get_rand_hexa(types)], [8, get_rand_hexa(types)], [9, get_rand_hexa(types)], [10, get_rand_hexa(types)]]
+
 # todo : définir le couple automate_number + type --> [['aut_numb','type'] * 10 ] --> ceci permettra de remplacer la boucle while dans la génération de la donnée --> for automate in types: unit_id = automate[0] and automaton_type = automate[1]
 while True:
 
@@ -19,11 +29,11 @@ while True:
     with open(f, "w+") as outfile:
         i = 1
         array = []
-        for type in types:
+        for element in automatons:
             data = {
                        'unit_id': unit_id,
-                       'automaton_number': type[1],
-                       'automaton_type': '0X000BA2' + str(type[0]),
+                       'automaton_number': element[0],
+                       'automaton_type': '0X000BA2' + str(element[1]),
                        'tank_temp': round(random.uniform(2.5, 4.0), 1),
                        'external_temp': round(random.uniform(8.0, 14.0), 1),
                        'milk_weight_tank': random.randrange(3512, 4607, 1),
@@ -48,7 +58,8 @@ while True:
     with open(f, 'rb') as _file:
         s.send(_file.read())
 
-    print("Le fichier a ete correctement ete envoye au serveur : %s." % f)
+    print("Le fichier a correctement ete envoye au serveur : %s." % f)
 
     s.recv(2048)
     time.sleep(50)
+
