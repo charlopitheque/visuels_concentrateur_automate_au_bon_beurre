@@ -29,7 +29,7 @@ class ClientThread(threading.Thread):
         for automates in decoded:
             print(automates)
             for automate in automates:
-                cnx = mysql.connector.connect(user='admin', password='admin', host='127.0.0.1', database='USINE_AU_BON_BEURRE_BDD')
+                cnx = mysql.connector.connect(user='read', password='read', host='127.0.0.1', database='USINE_AU_BON_BEURRE_BDD')
                 cursor = cnx.cursor()
 
                 # todo : ajouter le poids produit fini
