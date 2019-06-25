@@ -21,10 +21,10 @@ const port = 5000;
  */
 const db = mysql.createConnection (
     {
-        host: '54.38.240.160',
-        user: 'automate_worker',
-        password: 'Pksdj87Gtfucb',
-        database: 'devops'
+        host: '127.0.0.1',
+        user: 'admin',
+        password: 'admin',
+        database: 'USINE_AU_BON_BEURRE_BDD'
     }
 );
 
