@@ -541,8 +541,8 @@ function updateCharts(){
             console.log(response);
             populateCharts({search:1, limit:600});
             setTimeout( ()=>{
-                setInterval(()=>populateCharts({search:1, limit:10}),2000)
-            }, 2000)
+                setInterval(()=>populateCharts({search:1, limit:10}),60000)
+            }, 60000)
         });
     });
     $('#switch-interval').click(()=>{
