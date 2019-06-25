@@ -476,7 +476,7 @@ function populateCharts(payload){
     console.log('populating ...')
     getData(payload).then(res=>{
         res.forEach(automaton=>{
-            let date = new Date(automaton.date)
+            let date = new Date(automaton.epoch)
             if(labels.indexOf(date.toLocaleTimeString())=== -1){
                 labels.push(date.toLocaleTimeString())
                 if(labels.length > 60){
