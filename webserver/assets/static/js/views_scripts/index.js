@@ -487,36 +487,36 @@ function populateCharts(payload){
         window.charts.forEach((chart)=>{
             res.forEach(automaton=>{
                 chart.data.datasets.forEach(dataset=>{
-                    if(dataset.id === automaton.numero_automate ){
+                    if(dataset.id === automaton.automaton_number ){
                         switch (chart.options.meta.slug){
                             case 'tank-temp':
-                                dataset.data.push(parseFloat(automaton.temp_cuve))
+                                dataset.data.push(parseFloat(automaton.tank_temp))
                                 break;
                             case 'ext-temp':
-                                dataset.data.push(parseFloat(automaton.temp_exterieur))
+                                dataset.data.push(parseFloat(automaton.external_temp))
                                 break;
                             case 'milk-tank-weight':
-                                dataset.data.push(parseFloat(automaton.poids_lait_cuve))
+                                dataset.data.push(parseFloat(automaton.milk_weight_tank))
                                 break;
                             case 'finished-product-mass':
                                 break;
                             case 'mesure-ph':
-                                dataset.data.push(parseFloat(automaton.mesure_ph))
+                                dataset.data.push(parseFloat(automaton.ph_measurement))
                                 break;
                             case 'concentration-k+':
-                                dataset.data.push(parseFloat(automaton.mesure_k))
+                                dataset.data.push(parseFloat(automaton.k_measurement))
                                 break;
                             case 'concentration-nacl':
-                                dataset.data.push(parseFloat(automaton.concent_nacl))
+                                dataset.data.push(parseFloat(automaton.nacl_concentration))
                                 break;
                             case 'lvl-bact-salmonelle':
-                                dataset.data.push(parseFloat(automaton.niveau_bact_salmo))
+                                dataset.data.push(parseFloat(automaton.lvl_bact_salmo))
                                 break;
                             case 'lvl-bact-ecoli':
-                                dataset.data.push(parseFloat(automaton.niveau_bact_ecoli))
+                                dataset.data.push(parseFloat(automaton.lvl_bact_ecoli))
                                 break;
                             case 'lvl-bact-listeria':
-                                dataset.data.push(parseFloat(automaton.niveau_bact_listeria))
+                                dataset.data.push(parseFloat(automaton.lvl_bact_listeria))
                                 break;
                         }
                     }
