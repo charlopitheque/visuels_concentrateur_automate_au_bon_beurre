@@ -29,31 +29,31 @@ class ClientThread(threading.Thread):
         for automates in decoded:
             print(automates)
             for automate in automates:
-                cnx = mysql.connector.connect(user='bot', password='expand', host='10.0.2.4', database='USINE_AU_BON_BEURRE_BDD')
+                cnx = mysql.connector.connect(user='concentrateur', password='concentrateur', host='172.31.31.226', database='USINE_AU_BON_BEURRE_BDD')
                 cursor = cnx.cursor()
 
                 # todo : ajouter le poids produit fini
                 # improvement : date(YYYY, MM, DD) instead of passing just epoch
 
-                insert_data = ("INSERT INTO automaton "
-                               "(epoch, unit_id, automaton_number, automaton_type, tank_temp, external_temp, milk_weight_tank, ph_measurement, k_measurement, nacl_concentration, lvl_bact_salmo, lvl_bact_ecoli, lvl_bact_listeria  )"
-                               "VALUES (%(epoch)s, %(unit_id)s, %(automaton_number)s, %(automaton_type)s, %(tank_temp)s, %(external_temp)s, %(milk_weight_tank)s, %(ph_measurement)s, %(k_measurement)s, %(nacl_concentration)s,"
-                               " %(lvl_bact_salmo)s, %(lvl_bact_ecoli)s, %(lvl_bact_listeria)s)"
+                insert_data = ("INSERT INTO AUTOMATON "
+                               "(DT_AUTOMATON_EPOCH, CD_UNIT, CD_AUTOMATE, CD_TYPE_AUTOMATON, IN_TANK_TEMP, IN_EXTERNAL_TEMP, IN_NETWEIGHT, IN_PH_RATE, IN_POTASSIUM_RATE, IN_SODUIM_CHLORIDE_RATE, IN_SALMONELLA_RATE, IN_ECOLI_RATE, IN_LISTERIA_RATE  )"
+                               "VALUES (%(DT_AUTOMATON_EPOCH)s, %(CD_UNIT)s, %(automaton_number)s, %(automaton_type)s, %(tank_temp)s, %(external_temp)s, %(IN_NETWEIGHT)s, %(IN_PH_RATE)s, %(IN_POTASSIUM_RATE)s, %(IN_SODUIM_CHLORIDE_RATE)s,"
+                               " %(IN_SALMONELLA_RATE)s, %(IN_ECOLI_RATE)s, %(IN_LISTERIA_RATE)s)"
                                )
                 data = {
-                    'epoch': automate['epoch'],
-                    'unit_id': automate['unit_id'],
-                    'automaton_number': automate['automaton_number'],
-                    'automaton_type': automate['automaton_type'],
-                    'tank_temp': automate['tank_temp'],
-                    'external_temp': automate['external_temp'],
-                    'milk_weight_tank': automate['milk_weight_tank'],
-                    'ph_measurement': automate['ph_measurement'],
-                    'k_measurement': automate['k_measurement'],
-                    'nacl_concentration': automate['nacl_concentration'],
-                    'lvl_bact_salmo': automate['lvl_bact_salmo'],
-                    'lvl_bact_ecoli': automate['lvl_bact_ecoli'],
-                    'lvl_bact_listeria': automate['lvl_bact_listeria']
+                    'DT_AUTOMATON_EPOCH': automate['epoch'],
+                    'CD_UNIT': automate['unit_id'],
+                    'CD_AUTOMATE': automate['automaton_number'],
+                    'CD_TYPE_AUTOMATON': automate['automaton_type'],
+                    'IN_TANK_TEMP': automate['tank_temp'],
+                    'IN_EXTERNAL_TEMP': automate['external_temp'],
+                    'IN_NETWEIGHT': automate['milk_weight_tank'],
+                    'IN_PH_RATE': automate['ph_measurement'],
+                    'IN_POTASSIUM_RATE': automate['k_measurement'],
+                    'IN_SODUIM_CHLORIDE_RATE': automate['nacl_concentration'],
+                    'IN_SALMONELLA_RATE': automate['lvl_bact_salmo'],
+                    'IN_ECOLI_RATE': automate['lvl_bact_ecoli'],
+                    'IN_LISTERIA_RATE': automate['lvl_bact_listeria']
                 }
 
                 cursor.execute(insert_data, data)

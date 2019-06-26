@@ -15,16 +15,19 @@ def get_rand_hexa(liste):
 
 unit_id = os.environ["unit_id"]
 types = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
-automatons = [[1, get_rand_hexa(types)], [2, get_rand_hexa(types)], [3, get_rand_hexa(types)], [4, get_rand_hexa(types)], [5, get_rand_hexa(types)], [6, get_rand_hexa(types)], [7, get_rand_hexa(types)], [8, get_rand_hexa(types)], [9, get_rand_hexa(types)], [10, get_rand_hexa(types)]]
+automatons = [[1, get_rand_hexa(types)], [2, get_rand_hexa(types)], [3, get_rand_hexa(types)],
+              [4, get_rand_hexa(types)], [5, get_rand_hexa(types)], [6, get_rand_hexa(types)],
+              [7, get_rand_hexa(types)], [8, get_rand_hexa(types)], [9, get_rand_hexa(types)],
+              [10, get_rand_hexa(types)]]
 
 # todo : définir le couple automate_number + type --> [['aut_numb','type'] * 10 ] --> ceci permettra de remplacer la boucle while dans la génération de la donnée --> for automate in types: unit_id = automate[0] and automaton_type = automate[1]
 while True:
 
     data = {}
-    date_str = str(calendar.timegm(time.gmtime()))
+    date = calendar.timegm(time.gmtime())
 
     # generation du nom du fichier
-    f = "paramunite_" + str(unit_id) + "_" + date_str + ".json"
+    f = "paramunite_" + str(unit_id) + "_" + str(date) + ".json"
 
     with open(f, "w+") as outfile:
         i = 1
@@ -44,7 +47,7 @@ while True:
                        'lvl_bact_salmo': random.randrange(17, 37, 1),
                        'lvl_bact_ecoli': random.randrange(35, 49, 1),
                        'lvl_bact_listeria': random.randrange(28, 54, 1),
-                       'epoch': date_str
+                       'epoch': date
                    },
             i += 1
             array.append(data)
@@ -62,4 +65,3 @@ while True:
 
     s.recv(2048)
     time.sleep(50)
-
