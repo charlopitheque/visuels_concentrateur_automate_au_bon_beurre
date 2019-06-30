@@ -37,7 +37,7 @@ class ClientThread(threading.Thread):
 
                 insert_data = ("INSERT INTO AUTOMATON "
                                "(DT_AUTOMATON_EPOCH, CD_UNIT, CD_AUTOMATE, CD_TYPE_AUTOMATON, IN_TANK_TEMP, IN_EXTERNAL_TEMP, IN_NETWEIGHT, IN_PH_RATE, IN_POTASSIUM_RATE, IN_SODUIM_CHLORIDE_RATE, IN_SALMONELLA_RATE, IN_ECOLI_RATE, IN_LISTERIA_RATE  )"
-                               "VALUES (%(DT_AUTOMATON_EPOCH)s, %(CD_UNIT)s, %(automaton_number)s, %(CD_TYPE_AUTOMATON)s, %(IN_TANK_TEMP)s, %(IN_EXTERNAL_TEMP)s, %(IN_NETWEIGHT)s, %(IN_PH_RATE)s, %(IN_POTASSIUM_RATE)s, %(IN_SODUIM_CHLORIDE_RATE)s,"
+                               "VALUES (%(DT_AUTOMATON_EPOCH)s, %(CD_UNIT)s, %(CD_AUTOMATE)s, %(CD_TYPE_AUTOMATON)s, %(IN_TANK_TEMP)s, %(IN_EXTERNAL_TEMP)s, %(IN_NETWEIGHT)s, %(IN_PH_RATE)s, %(IN_POTASSIUM_RATE)s, %(IN_SODUIM_CHLORIDE_RATE)s,"
                                " %(IN_SALMONELLA_RATE)s, %(IN_ECOLI_RATE)s, %(IN_LISTERIA_RATE)s)"
                                )
                 data = {
