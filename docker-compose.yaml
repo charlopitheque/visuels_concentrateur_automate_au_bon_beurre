@@ -2,7 +2,7 @@ version: '3'
 services:
 
   unit1:
-    image: unit:v1
+    image: unit:v2
     container_name: automate1
     restart: always
     environment:
@@ -13,7 +13,7 @@ services:
       - network_usine
 
   unit2:
-    image: unit:v1
+    image: unit:v2
     container_name: automate2
     restart: always
     environment:
@@ -24,7 +24,7 @@ services:
       - network_usine
 
   unit3:
-    image: unit:v1
+    image: unit:v2
     container_name: automate3
     restart: always
     environment:
@@ -35,7 +35,7 @@ services:
       - network_usine
 
   unit4:
-    image: unit:v1
+    image: unit:v2
     container_name: automate4
     restart: always
     environment:
@@ -46,7 +46,7 @@ services:
     - network_usine
 
   unit5:
-    image: unit:v1
+    image: unit:v2
     container_name: automate5
     restart: always
     environment:
@@ -57,7 +57,7 @@ services:
       - network_usine
 
   workerServer:
-    image: workerserver:v1
+    image: workerserver:v2
     container_name: workerServer
     restart: always
     hostname: "workerserver"
