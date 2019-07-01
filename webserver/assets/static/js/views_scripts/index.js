@@ -477,7 +477,7 @@ function populateCharts(payload){
     getData(payload).then(res=>{
         res.forEach(automaton=>{
             let date = new Date(0); // The 0 there is the key, which sets the date to the epoch
-            date.setUTCSeconds(automaton.epoch);
+            date.setUTCSeconds(automaton.DT_AUTOMATON_EPOCH);
             if(labels.indexOf(date.toLocaleTimeString())=== -1){
                 labels.push(date.toLocaleTimeString())
                 if(labels.length > 60){
@@ -488,36 +488,37 @@ function populateCharts(payload){
         window.charts.forEach((chart)=>{
             res.forEach(automaton=>{
                 chart.data.datasets.forEach(dataset=>{
-                    if(dataset.id === automaton.automaton_number ){
+                    if(dataset.id === automaton.CD_AUTOMATE ){
+                        console.log(automaton)
                         switch (chart.options.meta.slug){
                             case 'tank-temp':
-                                dataset.data.push(parseFloat(automaton.tank_temp))
+                                dataset.data.push(parseFloat(automaton.IN_TANK_TEMP))
                                 break;
                             case 'ext-temp':
-                                dataset.data.push(parseFloat(automaton.external_temp))
+                                dataset.data.push(parseFloat(automaton.IN_EXTERNAL_TEMP))
                                 break;
                             case 'milk-tank-weight':
-                                dataset.data.push(parseFloat(automaton.milk_weight_tank))
+                                dataset.data.push(parseFloat(automaton.IN_NETWEIGHT))
                                 break;
                             case 'finished-product-mass':
                                 break;
                             case 'mesure-ph':
-                                dataset.data.push(parseFloat(automaton.ph_measurement))
+                                dataset.data.push(parseFloat(automaton.IN_PH_RATE))
                                 break;
                             case 'concentration-k+':
-                                dataset.data.push(parseFloat(automaton.k_measurement))
+                                dataset.data.push(parseFloat(automaton.IN_POTASSIUM_RATE))
                                 break;
                             case 'concentration-nacl':
-                                dataset.data.push(parseFloat(automaton.nacl_concentration))
+                                dataset.data.push(parseFloat(automaton.IN_SODUIM_CHLORIDE_RATE))
                                 break;
                             case 'lvl-bact-salmonelle':
-                                dataset.data.push(parseFloat(automaton.lvl_bact_salmo))
+                                dataset.data.push(parseFloat(automaton.IN_SALMONELLA_RATE))
                                 break;
                             case 'lvl-bact-ecoli':
-                                dataset.data.push(parseFloat(automaton.lvl_bact_ecoli))
+                                dataset.data.push(parseFloat(automaton.IN_ECOLI_RATE))
                                 break;
                             case 'lvl-bact-listeria':
-                                dataset.data.push(parseFloat(automaton.lvl_bact_listeria))
+                                dataset.data.push(parseFloat(automaton.IN_LISTERIA_RATE))
                                 break;
                         }
                     }
@@ -526,8 +527,8 @@ function populateCharts(payload){
                     }   
                 })
                 //add data in each case 
-            })
-            chart.data.labels = labels
+            });
+            chart.data.labels = labels;
             chart.update();
         })
     });
