@@ -535,14 +535,17 @@ function populateCharts(payload){
 function updateCharts(){
     setInterval(populateCharts({search:1, limit:10}),10000)
 }
+var e = document.getElementById("unit-select");
+    var unit_id = e.options[e.selectedIndex].value;
 (function () {
+
     initiateCharts().then(response=>{
         console.log(response);
         createDatasets().then((response)=>{
             console.log(response);
-            populateCharts({search:1, limit:600});
+            populateCharts({search:unit_id, limit:600});
             setTimeout( ()=>{
-                setInterval(()=>populateCharts({search:1, limit:10}),60000)
+                setInterval(()=>populateCharts({search:unit_id, limit:10}),60000)
             }, 60000)
         });
     });
@@ -559,7 +562,7 @@ function updateCharts(){
     });
     $( "#switchUnit" ).click(() => {
         var e = document.getElementById("unit-select");
-        var unit_id = e.options[e.selectedIndex].value;
+        this.unit_id = e.options[e.selectedIndex].value;
         console.log(unit_id);
         //let automatons = populateCharts({search:unit_id})
         //console.log(automatons)
