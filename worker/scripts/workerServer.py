@@ -41,6 +41,7 @@ class ClientThread(threading.Thread):
                 # todo : ajouter le poids produit fini
                 # improvement : date(YYYY, MM, DD) instead of passing just epoch
                 if checking(automate):
+                    print('test concluant')
                     cnx = mysql.connector.connect(user='concentrateur', password='concentrateur', host='192.168.0.1', database='BDD_USINE_AU_BON_BEURRE')
                     cursor = cnx.cursor()
 
@@ -70,6 +71,7 @@ class ClientThread(threading.Thread):
                     cnx.close()
 
                 else:
+                    print("test echoué : pousser en base d'erreurs")
                     cnx = mysql.connector.connect(user='concentrateur', password='concentrateur', host='192.168.0.1', database='BDD_USINE_AU_BON_BEURRE')
                     cursor = cnx.cursor()
 
