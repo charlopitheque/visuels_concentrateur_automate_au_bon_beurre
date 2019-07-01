@@ -533,12 +533,6 @@ function populateCharts(payload){
     });
 }
 function updateCharts(){
-    setInterval(populateCharts({search:1, limit:10}),10000)
-}
-var e = document.getElementById("unit-select");
-var unit_id = e.options[e.selectedIndex].value;
-(function () {
-
     initiateCharts().then(response=>{
         console.log(response);
         createDatasets().then((response)=>{
@@ -549,6 +543,12 @@ var unit_id = e.options[e.selectedIndex].value;
             }, 60000)
         });
     });
+}
+const e = document.getElementById("unit-select");
+let unit_id = e.options[e.selectedIndex].value;
+(function () {
+
+    updateCharts();
     $('#switch-interval').click(()=>{
         console.log('On switch les intervalles')
         window.charts.forEach(chart=>{
@@ -564,6 +564,7 @@ var unit_id = e.options[e.selectedIndex].value;
         var e = document.getElementById("unit-select");
         unit_id = e.options[e.selectedIndex].value;
         console.log(unit_id);
+        updateCharts()
         //let automatons = populateCharts({search:unit_id})
         //console.log(automatons)
         //update les datasets de chaques config des graph, voir 
