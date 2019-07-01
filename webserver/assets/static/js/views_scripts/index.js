@@ -544,8 +544,8 @@ function updateCharts() {
             console.log(response);
             populateCharts({search: unit_id, limit: 600});
             setTimeout(() => {
-                setInterval(() => populateCharts({search: unit_id, limit: 10}), 60000)
-            }, 60000)
+                setInterval(() => populateCharts({search: unit_id, limit: 10}), 63000)
+            }, 63000)
         });
     });
 }
