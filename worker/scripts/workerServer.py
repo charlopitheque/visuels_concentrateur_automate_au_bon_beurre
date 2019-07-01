@@ -34,8 +34,8 @@ class ClientThread(threading.Thread):
         decoded = json.loads(r.decode('utf-8'))
 
         for automates in decoded:
-            print(automates)
             for automate in automates:
+                print(automate)
                 # todo : ajouter le poids produit fini
                 # improvement : date(YYYY, MM, DD) instead of passing just epoch
                 if checking(automate):

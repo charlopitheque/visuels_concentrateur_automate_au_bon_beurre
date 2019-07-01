@@ -37,7 +37,7 @@ while True:
                        'unit_id': unit_id,
                        'automaton_number': element[0],
                        'automaton_type': '0X000BA2' + str(element[1]),
-                       'tank_temp': round(random.uniform(2.5, 4.0), 1) if (random.uniform(2.5, 4.0) != 2.7) else 101,
+                       'tank_temp': round(random.uniform(2.5, 4.0), 1) if (round(random.uniform(2.5, 4.0), 1) != 2.7) else 101,
                        'external_temp': round(random.uniform(8.0, 14.0), 1),
                        'milk_weight_tank': random.randrange(3512, 4607, 1),
                        'finished_product_weight': 0,
