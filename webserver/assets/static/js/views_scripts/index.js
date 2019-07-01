@@ -536,7 +536,7 @@ function updateCharts(){
     setInterval(populateCharts({search:1, limit:10}),10000)
 }
 var e = document.getElementById("unit-select");
-    var unit_id = e.options[e.selectedIndex].value;
+var unit_id = e.options[e.selectedIndex].value;
 (function () {
 
     initiateCharts().then(response=>{
@@ -562,7 +562,7 @@ var e = document.getElementById("unit-select");
     });
     $( "#switchUnit" ).click(() => {
         var e = document.getElementById("unit-select");
-        this.unit_id = e.options[e.selectedIndex].value;
+        unit_id = e.options[e.selectedIndex].value;
         console.log(unit_id);
         //let automatons = populateCharts({search:unit_id})
         //console.log(automatons)
