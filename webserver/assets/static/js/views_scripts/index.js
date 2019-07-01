@@ -553,10 +553,8 @@ function updateCharts() {
 function resetCharts() {
     return new Promise((resolve, reject) => {
         window.charts.forEach(chart => {
-            chart.data.labels = [];
-            chart.data.datasets.forEach(dataset => {
-                dataset.data = []
-            });
+            chart.data.labels.length = 0;
+            chart.data.datasets.length = 0;
             chart.update()
             resolve('charts successfully reinitialised')
         })
