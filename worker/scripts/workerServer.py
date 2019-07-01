@@ -29,7 +29,7 @@ class ClientThread(threading.Thread):
 
         r = self.clientsocket.recv(99999)
         print("Ouverture du fichier")
-        print(r.decode('utf-8'))
+        # print(r.decode('utf-8'))
 
         self.clientsocket.send('Fichier correctement recu'.encode('utf-8'))
 
@@ -95,6 +95,7 @@ class ClientThread(threading.Thread):
                         'IN_LISTERIA_RATE': automate['lvl_bact_listeria']
                     }
                     cursor.execute(insert_data, data)
+    
                     cnx.commit()
                     print(cursor.lastrowid)
                     cnx.close()
