@@ -489,7 +489,6 @@ function populateCharts(payload){
             res.forEach(automaton=>{
                 chart.data.datasets.forEach(dataset=>{
                     if(dataset.id === automaton.CD_AUTOMATE ){
-                        console.log(automaton)
                         switch (chart.options.meta.slug){
                             case 'tank-temp':
                                 dataset.data.push(parseFloat(automaton.IN_TANK_TEMP))
