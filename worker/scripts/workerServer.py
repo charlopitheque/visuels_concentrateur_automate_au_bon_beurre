@@ -37,12 +37,11 @@ class ClientThread(threading.Thread):
 
         for automates in decoded:
             for automate in automates:
-                print(automate)
+                # print(automate)
                 # todo : ajouter le poids produit fini
                 # improvement : date(YYYY, MM, DD) instead of passing just epoch
                 if checking(automate):
-                    cnx = mysql.connector.connect(user='concentrateur', password='concentrateur', host='192.168.0.1',
-                                                  database='BDD_USINE_AU_BON_BEURRE')
+                    cnx = mysql.connector.connect(user='concentrateur', password='concentrateur', host='192.168.0.1', database='BDD_USINE_AU_BON_BEURRE')
                     cursor = cnx.cursor()
 
                     insert_data = ("INSERT INTO AUTOMATON "
@@ -71,15 +70,13 @@ class ClientThread(threading.Thread):
                     cnx.close()
 
                 else:
-                    cnx = mysql.connector.connect(user='concentrateur', password='concentrateur', host='192.168.0.1',
-                                                  database='BDD_USINE_AU_BON_BEURRE')
+                    cnx = mysql.connector.connect(user='concentrateur', password='concentrateur', host='192.168.0.1', database='BDD_USINE_AU_BON_BEURRE')
                     cursor = cnx.cursor()
 
                     insert_data = ("INSERT INTO AUTOMATON_FAILURE "
                                    "(DT_AUTOMATON_EPOCH, CD_UNIT, CD_AUTOMATE, CD_TYPE_AUTOMATON, IN_TANK_TEMP, IN_EXTERNAL_TEMP, IN_NETWEIGHT, IN_PH_RATE, IN_POTASSIUM_RATE, IN_SODUIM_CHLORIDE_RATE, IN_SALMONELLA_RATE, IN_ECOLI_RATE, IN_LISTERIA_RATE  )"
                                    "VALUES (%(DT_AUTOMATON_EPOCH)s, %(CD_UNIT)s, %(CD_AUTOMATE)s, %(CD_TYPE_AUTOMATON)s, %(IN_TANK_TEMP)s, %(IN_EXTERNAL_TEMP)s, %(IN_NETWEIGHT)s, %(IN_PH_RATE)s, %(IN_POTASSIUM_RATE)s, %(IN_SODUIM_CHLORIDE_RATE)s,"
-                                   " %(IN_SALMONELLA_RATE)s, %(IN_ECOLI_RATE)s, %(IN_LISTERIA_RATE)s)"
-                                   )
+                                   " %(IN_SALMONELLA_RATE)s, %(IN_ECOLI_RATE)s, %(IN_LISTERIA_RATE)s)")
                     data = {
                         'DT_AUTOMATON_EPOCH': automate['epoch'],
                         'CD_UNIT': automate['unit_id'],
