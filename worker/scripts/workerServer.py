@@ -6,7 +6,8 @@ import json
 
 
 def checking(elem):
-    if 1 <= elem['unit_id'] <= 5 and 1 <= elem["automaton_number"] < 10 and 0 < elem['tank_temp'] < 100 and 0 < elem['milk_weight_tank'] < 10000:
+    if 1 <= elem['unit_id'] <= 5 and 1 <= elem["automaton_number"] < 10 and 0 < elem['tank_temp'] < 100 and 0 < elem[
+        'milk_weight_tank'] < 10000:
         return True
     else:
         return False
